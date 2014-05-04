@@ -1,4 +1,4 @@
-UN-Quadron
+UN-Squadron
 ==========
 
-SNES UN Quadron
+SNES UN Squadron
