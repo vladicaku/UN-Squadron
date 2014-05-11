@@ -2,15 +2,13 @@ Carrier Air Wing
 =========
 
 ## TO-DO-M♫ list
+- [ ] Fix "generate enemy" bug
 - [x] Implement Sound Engine
-- [ ] Refactor Game class and Hit() method
-- [ ] Remove collision detection for bullets in Enemy and Game 
-- [ ] Add new eplosion sounds
-- [ ] Resize and correct Rocket and Plane sprites
-- [x] Test the new Hit() method
-- [x] Change repo name to Carrier Air Wing</del>
-- [x] Refactor and add the existing collision and enemy system</del>
-- [x] Create Bullet class</del>
+- [x] Refactor Game class and Hit() method
+- [x] Remove collision detection for bullets in Enemy and Game 
+- [x] Resize and correct Rocket and Plane sprites
+- [x] Refactor and add the existing collision and enemy system
+- [x] Create Bullet class
 - [x] Add enemy sprites
 - [x] Create menu
 - [ ] Add Documentation
