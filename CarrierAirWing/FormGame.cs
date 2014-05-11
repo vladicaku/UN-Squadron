@@ -14,7 +14,7 @@ namespace CarrierAirWing
         public Form formMenu;
         public Game game;
         public Timer timer;
-        public static int FRAMES_PER_SECOND = 50;
+        public static int FRAMES_PER_SECOND = 40;
 
         public FormGame()
         {
@@ -38,6 +38,13 @@ namespace CarrierAirWing
         {
             Invalidate();
             game.Move();
+            if (game.GameInProgress == false && game.TTL == 0 && game.CanClose == true)
+            {
+                FormHighScore fh = new FormHighScore();
+                fh.ShowDialog();
+                this.Close();
+            }
+                
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -65,6 +72,13 @@ namespace CarrierAirWing
             {
                 game.p1.plane.keys.right = 1;
                 game.p1.plane.keys.left = 0;
+            }
+            if (e.KeyCode == System.Windows.Forms.Keys.P)
+            {
+                if (timer.Enabled)
+                    timer.Stop();
+                else
+                    timer.Start();
             }
         }
 

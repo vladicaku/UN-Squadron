@@ -23,44 +23,41 @@ namespace CarrierAirWing
         public Player p1;
         public Controls p1Controls;
         public LinkedList<Enemy> enemies;
+        public LinkedList<Bullet> playerBullets;
         public LinkedList<Rocket> playerRockets;
         public LinkedList<Bullet> enemyBullets;
         public LinkedList<Explosion> explosions;
         public int BoundsX { get; set; }
         public int BoundsY { get; set; }
         public int Score { get; set; }
-        public bool GameInProgress { get; set; }
+
         public int TTL { get; set; }
+        public bool GameInProgress { get; set; }
+        public bool CanClose { get; set; }
 
         LinkedList<Rocket> deleteRockets;
         LinkedList<Bullet> deleteEnemyBullets;
         LinkedList<Explosion> deleteExplosions;
         LinkedList<Rocket> deletePlayerRockets;
         LinkedList<Enemy> deleteEnemies;
-
+        
         public Game()
         {
             GraphicsEngine.Init();
             level = new Level_1();
-
+            playerBullets = new LinkedList<Bullet>();
             playerRockets = new LinkedList<Rocket>();
             enemyBullets = new LinkedList<Bullet>();
             enemies = new LinkedList<Enemy>();
             explosions = new LinkedList<Explosion>();
 
-            foreach (Enemy e in level.Enemies)
-            {
-                enemies.AddFirst(e);
-            }
-
+            // Init LinkedLists
             deleteRockets = new LinkedList<Rocket>();
             deleteEnemyBullets = new LinkedList<Bullet>();
             deleteExplosions = new LinkedList<Explosion>();
             deletePlayerRockets = new LinkedList<Rocket>();
             deleteEnemies = new LinkedList<Enemy>();
             
-            //p1 = new Player(new A10ThunderBolt(100, 100));
-            //p1 = new Player(new F14TomCat(100, 100));
             if(Settings.chosenPlane == 0)
                 p1 = new Player(new F20TigerShark(100, 100));
             else if(Settings.chosenPlane == 1)
@@ -76,6 +73,7 @@ namespace CarrierAirWing
             p1Controls.B = System.Windows.Forms.Keys.S;
 
             GameInProgress = true;
+            CanClose = false;
         }
         
         public void Move()
@@ -83,16 +81,24 @@ namespace CarrierAirWing
             if (!GameInProgress)
             {
                 TTL--;
-                if(TTL <= 0)
+                if (TTL <= 0)
                     return;
             }
 
             if (GameInProgress)
             {
-                if (level.Tick(enemies.Count))
+                level.Tick();
+
+                if (level.Enemies.Count != 0)
+                if (level.Enemies.First.Value.Ticks == level.Ticks)
                 {
-                    foreach (Enemy e in level.Enemies)
-                        enemies.AddFirst(e);
+                    LinkedListNode<EnemyWrapper> temp = level.Enemies.First;
+                        while (temp != null && temp.Value.Ticks == level.Ticks)
+                        {
+                            enemies.AddLast(temp.Value.EnemyPlane);
+                            temp = temp.Next;
+                            level.Enemies.RemoveFirst();
+                        }
                 }
             }
 
@@ -127,7 +133,7 @@ namespace CarrierAirWing
                     continue;
                 }
                 r.Move();
-                
+
             }
 
             foreach (Bullet b in enemyBullets)
@@ -142,9 +148,7 @@ namespace CarrierAirWing
 
             if (p1.plane.keys.ctrl == 1)
             {
-                //Bullet b = p1.FireBullet();
-                //if (b != null)
-                    //playerBullets.AddFirst(b);
+                // Super Fire ...
             }
 
             if (p1.plane.keys.alt == 1)
@@ -239,6 +243,11 @@ namespace CarrierAirWing
                 e.Draw(g);
             }
 
+            foreach (Bullet b in playerBullets)
+            {
+                b.Draw(g);
+            }
+
             foreach (Rocket r in playerRockets)
             {
                 r.Draw(g);
@@ -259,10 +268,9 @@ namespace CarrierAirWing
 
         public void DrawHUD(Graphics g)
         {
-
             g.FillRectangle(new SolidBrush(Color.White), 0, 0, 64, 69);
             g.DrawImage(p1.plane.PlayerFace, 1, 0);
-            g.DrawRectangle(new Pen(Color.Black, 2), 1, 1, 64 , 69);
+            g.DrawRectangle(new Pen(Color.Black, 2), 1, 1, 64, 69);
 
             g.FillRectangle(new SolidBrush(Color.Red), 65, 50, 200, 20);
             g.DrawLine(new Pen(Color.Yellow, 20), 65, 60, (int)(65 + p1.Health * 2), 60);
@@ -270,40 +278,25 @@ namespace CarrierAirWing
 
             g.DrawString(string.Format("Level: {0}", (Level.ITERATION - 1) * 3 + level.Lvl),
                 new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold),
-                new SolidBrush(Color.Black),
+                new SolidBrush(Color.Gold),
                 new PointF(67, 2));
 
             g.DrawString(string.Format("Lives: {0}", p1.Lives),
                 new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold),
-                new SolidBrush(Color.Firebrick),
+                new SolidBrush(Color.White),
                 new PointF(67, 27));
 
             g.DrawString(string.Format("Score: {0}", Score.ToString()),
                 new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold),
-                new SolidBrush(Color.Firebrick),
+                new SolidBrush(Color.White),
                 new PointF(160, 27));
-
-
-            //g.DrawString("Health:",
-            //    new Font(FontFamily.GenericMonospace, 16), 
-            //    new SolidBrush(Color.Red),
-            //    new PointF(5, 42));
-            //g.DrawLine(new Pen(Color.Red, 10), 8, 80, 8 + (int)(2*p1.Health), 80);
-
-            //g.DrawString(string.Format("Score: {0}", Score.ToString()),
-            //    new Font(FontFamily.GenericMonospace, 16),
-            //    new SolidBrush(Color.Red),
-            //    new PointF(225, 5));
-            //g.DrawString(string.Format("Level: {0}", (Level.ITERATION - 1)*3 + level.Lvl),
-            //    new Font(FontFamily.GenericMonospace, 16),
-            //    new SolidBrush(Color.Red),
-            //    new PointF(225, 25));
         }
 
         public void GameOver()
         {
             GameInProgress = false;
             TTL = 15;
+            playerBullets = new LinkedList<Bullet>();
             playerRockets = new LinkedList<Rocket>();
             enemyBullets = new LinkedList<Bullet>();
             enemies = new LinkedList<Enemy>();
@@ -317,10 +310,7 @@ namespace CarrierAirWing
                     return;
                 Settings.highScores.AddHighScore(new Score(name, Score));
             }
-
-            FormHighScore fh = new FormHighScore();
-            fh.ShowDialog();
-
+            CanClose = true;
         }
     }
 }

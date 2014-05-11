@@ -30,7 +30,7 @@ namespace CarrierAirWing
             if (BulletCountdown == 0)
             {
                 BulletCountdown = 10;
-                return new Bullet((int)(X + Sprite.Width * 0.9F), Y+3, 5, 0, 20);
+                return new Bullet((int)(X + Sprite.Width * 0.9F), Y + 3, 5, 0, 20);
             }
             return null;
         }
@@ -43,7 +43,7 @@ namespace CarrierAirWing
                 RocketsLaunched++;
                 if (RocketsLaunched == 14)
                     RocketBlocked = true;
-                return new Rocket((int)(X + Sprite.Width * 0.85F), Y-2, 12, 0, 1, 20); //Rocket 1
+                return new Rocket((int)(X + Sprite.Width * 0.85F), Y - 2, 12, 0, 1, 20); //Rocket 1
             }
             return null;
         }

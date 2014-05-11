@@ -32,7 +32,7 @@ namespace CarrierAirWing
         private int fireDelay;
 
         // Konstruktor bez fireDelay
-        public Enemy(int x, int y, EnemyMovement[] m, int sr, int health)
+        public Enemy(int x, int y, EnemyMovement[] m, int health)
         {
             X = x;
             Y = y;
@@ -49,16 +49,17 @@ namespace CarrierAirWing
         }
 
         // Konstruktor sas fireDelay
-        public Enemy(int x, int y, EnemyMovement[] m, int sr, int health, int fireDelay)
-            : this(x, y, m, sr, health)
+        public Enemy(int x, int y, EnemyMovement[] m, int health, int fireDelay)
+            : this(x, y, m, health)
         {
             this.fireDelay = fireDelay;
         }
 
         // Konstruktor sas tip i fireDelay
-        public Enemy(int x, int y, EnemyMovement[] m, int sr, int health, int type, int fireDelay)
-            : this(x, y, m, sr, health, fireDelay)
+        public Enemy(int x, int y, EnemyMovement[] m, int health, int type, int fireDelay)
+            : this(x, y, m, health, fireDelay)
         {
+            spriteIndex = type;
             //Da se doimplementira
         }
 
@@ -73,7 +74,6 @@ namespace CarrierAirWing
             {
                 ticks = 0;
                 currentMovement = (currentMovement + 1) % movement.Length;
-                if (currentMovement == 0) currentMovement = 1;
                 SpeedX = movement[currentMovement].SpeedX;
                 SpeedY = movement[currentMovement].SpeedY;
             }
@@ -99,8 +99,8 @@ namespace CarrierAirWing
             int differenceX = Math.Abs(x - X);
             int differenceY = Math.Abs(y - Y);
 
-            if (differenceY < 500 && differenceX < 500)
-            {    
+            if (differenceY < 350 && differenceX < 350)
+            {
                 CanFire = fireDelay;
                 int signX = (x < X) ? -1 : 1;
                 int signY = (y < Y) ? -1 : 1;
