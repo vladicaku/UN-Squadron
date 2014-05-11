@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F3266E6F-8598-4428-A024-70561ACAE19B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CarrierAirWing</RootNamespace>
+    <AssemblyName>CarrierAirWing</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>f16_multirole_fighter_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bullet.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="Explosion.cs" />
+    <Compile Include="F14TomCat.cs" />
+    <Compile Include="F20TigerShark.cs" />
+    <Compile Include="FormChoosePlane.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChoosePlane.Designer.cs">
+      <DependentUpon>FormChoosePlane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGame.Designer.cs">
+      <DependentUpon>FormGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormGetName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGetName.Designer.cs">
+      <DependentUpon>FormGetName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHighScore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHighScore.Designer.cs">
+      <DependentUpon>FormHighScore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMenu.Designer.cs">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Game.cs" />
+    <Compile Include="GraphicsEngine.cs" />
+    <Compile Include="HighScore.cs" />
+    <Compile Include="Level.cs" />
+    <Compile Include="A10ThunderBolt.cs" />
+    <Compile Include="Level_1.cs" />
+    <Compile Include="Level_2.cs" />
+    <Compile Include="Level_3.cs" />
+    <Compile Include="Plane.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Rocket.cs" />
+    <Compile Include="Score.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="SoundEngine.cs" />
+    <EmbeddedResource Include="FormChoosePlane.resx">
+      <DependentUpon>FormChoosePlane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGame.resx">
+      <DependentUpon>FormGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGetName.resx">
+      <DependentUpon>FormGetName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHighScore.resx">
+      <DependentUpon>FormHighScore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMenu.resx">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Images\Planes\UNSquadronPlayer.png" />
+    <EmbeddedResource Include="Resources\Images\Rockets\rocket0.png" />
+    <EmbeddedResource Include="Resources\Images\Rockets\rocket1.png" />
+    <EmbeddedResource Include="Resources\Images\Rockets\rocket2.png" />
+    <EmbeddedResource Include="Resources\Images\Rockets\rocket3.png" />
+    <EmbeddedResource Include="Resources\Images\Rockets\rocket4.png" />
+    <EmbeddedResource Include="Resources\Images\Rockets\rocket5.png" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="f16_multirole_fighter_icon.ico" />
+    <Content Include="Resources\Images\bullet2.png" />
+    <Content Include="Resources\Images\bullet4.png" />
+    <Content Include="Resources\Images\Bullets\bullet0.png" />
+    <Content Include="Resources\Images\Bullets\bullet1.png" />
+    <Content Include="Resources\Images\Bullets\bullet2.png" />
+    <Content Include="Resources\Images\Bullets\bullet3.png" />
+    <EmbeddedResource Include="Resources\Images\Enemies\enemies.png" />
+    <Content Include="Resources\Images\Explosions\exp10.png" />
+    <Content Include="Resources\Images\Explosions\exp11.png" />
+    <Content Include="Resources\Images\Explosions\exp12.png" />
+    <Content Include="Resources\Images\Explosions\exp13.png" />
+    <Content Include="Resources\Images\Explosions\exp14.png" />
+    <Content Include="Resources\Images\Explosions\exp15.png" />
+    <Content Include="Resources\Images\Explosions\exp16.png" />
+    <Content Include="Resources\Images\Explosions\exp20.png" />
+    <Content Include="Resources\Images\Explosions\exp21.png" />
+    <Content Include="Resources\Images\Explosions\exp22.png" />
+    <Content Include="Resources\Images\Explosions\exp23.png" />
+    <Content Include="Resources\Images\Levels\level0.jpg" />
+    <Content Include="Resources\Images\Levels\level1.png" />
+    <Content Include="Resources\Images\Levels\level2.png" />
+    <EmbeddedResource Include="Resources\Images\Menu\CarAirWing.gif" />
+    <EmbeddedResource Include="Resources\Images\Menu\mainMenu.gif" />
+    <Content Include="Resources\Images\playerFace.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
